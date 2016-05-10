@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 /**
  * Created by corey on 5/4/16.
@@ -7,9 +8,11 @@ import java.awt.*;
 public class Tester extends JFrame{
 
     private CompositeIcon compositeIcon;
+    private Random rng;
 
     public Tester(){
         compositeIcon = new CompositeIcon();
+        rng = new Random();
         make();
     }
 
@@ -17,16 +20,20 @@ public class Tester extends JFrame{
 
         setTitle("Design Pattern");
         setSize(600, 400);
-        /*for( int i = 0; i < 3; i++ ){
-            ImageIcon blue = new ImageIcon("blue.png");
-            compositeIcon.addIcon(blue, ( i + 30 ) * 100, ( i + 30 ) * 100 );
-        }
-        compositeIcon.printAll(this, getGraphics());*/
+        int x, y;
 
-        ImageIcon blue = new ImageIcon("blue.png");
-        JLabel label = new JLabel(blue);
-        label.setSize(200, 200);
-        add(label);
+        for( int i = 0; i < 12; i++ ){
+            x = rng.nextInt() % 500 + 50;
+            y = rng.nextInt() % 300 + 50;
+
+            if( rng.nextInt() % 2 == 0 ){
+                compositeIcon.addIcon( new BlueCircle(), x, y );
+            }
+            else
+                compositeIcon.addIcon( new RedCircle(), x, y );
+        }
+        compositeIcon.printAll(this, this.getGraphics());
+
         setVisible(true);
     }
 

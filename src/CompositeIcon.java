@@ -11,8 +11,8 @@ public class CompositeIcon implements Icon {
     private ArrayList<int[]> coordinates;
 
     public CompositeIcon(){
-        icons = new ArrayList<>();
-        coordinates = new ArrayList<>();
+        icons = new ArrayList<Icon>();
+        coordinates = new ArrayList<int[]>();
     }
 
     public void addIcon(Icon icon, int x, int y ){
